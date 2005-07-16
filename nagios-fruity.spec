@@ -45,10 +45,10 @@ cp -a *.php *.js $RPM_BUILD_ROOT%{_appdir}
 cp -a images includes modules output session sitedb style $RPM_BUILD_ROOT%{_appdir}
 
 cat <<EOF > $RPM_BUILD_ROOT%{_sysconfdir}/apache-fruity.conf
-php_value short_open_tag on
 Alias /fruity %{_appdir}
 <Location /fruity>
 	allow from all
+	php_value short_open_tag on
 </Location>
 # vim: filetype=apache ts=4 sw=4 et
 EOF
