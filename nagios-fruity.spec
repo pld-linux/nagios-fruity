@@ -1,4 +1,5 @@
 Summary:	Nagios Configuration Tool
+Summary(pl):	Narzêdzie konfiguracyjne dla Nagiosa
 Name:		nagios-fruity
 Version:	1.0
 %define		_beta beta1
@@ -25,6 +26,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 A Nagios Configuration Tool.
+
+%description
+Narzêdzie konfiguracyjne dla Nagiosa.
 
 %prep
 %setup -q -n fruity
@@ -61,6 +65,9 @@ s,sitedb_config\[.username.\].=.'root',sitedb_config['username'] = 'mysql',
 
 rm -f $RPM_BUILD_ROOT%{_appdir}/includes/config.inc.dist
 
+%clean
+rm -rf $RPM_BUILD_ROOT
+
 %post
 if [ "$1" = 1 ]; then
 	%banner %{name} <<-EOF
@@ -81,9 +88,6 @@ fi
 
 %triggerun -- apache >= 2.0.0
 %apache_config_uninstall -v 2
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
