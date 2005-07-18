@@ -4,12 +4,13 @@ Name:		nagios-fruity
 Version:	1.0
 %define		_beta beta1
 %define		_rc	pl2
-Release:	0.%{_beta}.%{_rc}.14
+Release:	0.%{_beta}.%{_rc}.16
 Epoch:		0
 License:	GPL v2
 Group:		Applications/WWW
 Source0:	http://dl.sourceforge.net/fruity/fruity-%{version}-%{_beta}-%{_rc}.tar.gz
 # Source0-md5:	f53a6aa9bf38b0bd01c640f51312cc8c
+Patch0:		%{name}-indent.patch
 URL:		http://fruity.sourceforge.net/
 BuildRequires:	rpmbuild(macros) >= 1.226
 BuildRequires:	sed >= 4.0
@@ -32,6 +33,7 @@ Narzêdzie konfiguracyjne dla Nagiosa.
 
 %prep
 %setup -q -n fruity
+%patch0 -p1
 rm -rf CVS
 rm -rf config # no longer used
 
