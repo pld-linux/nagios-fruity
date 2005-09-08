@@ -2,15 +2,13 @@ Summary:	Nagios Configuration Tool
 Summary(pl):	Narzêdzie konfiguracyjne dla Nagiosa
 Name:		nagios-fruity
 Version:	1.0
-%define		_beta beta1
-%define		_rc	pl3
-Release:	0.%{_beta}.%{_rc}.1
+%define		_beta beta2
+Release:	0.%{_beta}.1
 Epoch:		0
 License:	GPL v2
 Group:		Applications/WWW
-Source0:	http://dl.sourceforge.net/fruity/fruity-%{version}-%{_beta}-%{_rc}.tar.gz
-# Source0-md5:	5b0f6caa5a4377fb8da77fd18a70f29a
-Patch0:		%{name}-indent.patch
+Source0:	http://dl.sourceforge.net/fruity/fruity-%{version}-%{_beta}.tar.gz
+# Source0-md5:	ead530130964ad3158d6cfb7824425ec
 URL:		http://fruity.sourceforge.net/
 BuildRequires:	rpmbuild(macros) >= 1.226
 BuildRequires:	sed >= 4.0
@@ -23,6 +21,7 @@ Requires:	webserver = apache
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define		_sysconfdir /etc/fruity
 %define		_appdir %{_datadir}/fruity
 
 %description
@@ -32,8 +31,7 @@ A Nagios Configuration Tool.
 Narzêdzie konfiguracyjne dla Nagiosa.
 
 %prep
-%setup -q -n fruity
-%patch0 -p1
+%setup -q -n fruity-%{version}-%{_beta}
 rm -rf CVS
 rm -rf config # no longer used
 
@@ -48,9 +46,9 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_appdir},%{_sysconfdir}}
 
 cp -a *.php *.js $RPM_BUILD_ROOT%{_appdir}
-cp -a images includes modules output session sitedb style $RPM_BUILD_ROOT%{_appdir}
+cp -a images includes modules output sitedb style $RPM_BUILD_ROOT%{_appdir}
 
-cat <<EOF > $RPM_BUILD_ROOT%{_sysconfdir}/apache-fruity.conf
+cat <<EOF > $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
 Alias /fruity %{_appdir}
 <Location /fruity>
 	allow from all
@@ -60,12 +58,16 @@ Alias /fruity %{_appdir}
 EOF
 
 sed -e "
-s,/usr/local/groundwork/fruity/logos,/usr/share/nagios/images/logos,
-s,/usr/local/groundwork/fruity,/usr/share/fruity,
+s,%{_prefix}/local/groundwork/fruity/logos,%{_datadir}/nagios/images/logos,
+s,%{_prefix}/local/groundwork/fruity,%{_datadir}/fruity,
 s,sitedb_config\[.username.\].=.'root',sitedb_config['username'] = 'mysql',
 " includes/config.inc.dist > $RPM_BUILD_ROOT%{_appdir}/includes/config.inc
 
 rm -f $RPM_BUILD_ROOT%{_appdir}/includes/config.inc.dist
+
+# config
+mv -f $RPM_BUILD_ROOT%{_appdir}/includes/config.inc $RPM_BUILD_ROOT%{_sysconfdir}/fruity.php
+ln -s %{_sysconfdir}/fruity.php $RPM_BUILD_ROOT%{_appdir}/includes/config.inc
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -80,13 +82,13 @@ EOF
 fi
 
 %triggerin -- apache1 >= 1.3.33-2
-%apache_config_install -v 1 -c %{_sysconfdir}/apache-fruity.conf
+%apache_config_install -v 1 -c %{_sysconfdir}/apache.conf
 
 %triggerun -- apache1 >= 1.3.33-2
 %apache_config_uninstall -v 1
 
 %triggerin -- apache >= 2.0.0
-%apache_config_install -v 2 -c %{_sysconfdir}/apache-fruity.conf
+%apache_config_install -v 2 -c %{_sysconfdir}/apache.conf
 
 %triggerun -- apache >= 2.0.0
 %apache_config_uninstall -v 2
@@ -94,5 +96,7 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc INSTALL sqldata/*
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/apache-fruity.conf
+%attr(750,root,http) %dir %{_sysconfdir}
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/apache.conf
+%attr(640,root,http) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/fruity.php
 %{_appdir}
