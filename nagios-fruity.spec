@@ -14,8 +14,8 @@ URL:		http://fruity.sourceforge.net/
 BuildRequires:	rpmbuild(macros) >= 1.226
 BuildRequires:	sed >= 4.0
 Requires:	adodb
-Requires:	nagios >= 2.0
-Requires:	php >= 5.0.0
+Requires:	nagios >= 2.0-0.b4
+Requires:	php >= 4:5.0.0
 Requires:	php-mysql
 Requires:	php-pear-HTML_TreeMenu
 Requires:	webserver = apache
