@@ -11,7 +11,7 @@ Group:		Applications/WWW
 Source0:	http://dl.sourceforge.net/fruity/fruity-%{version}-%{_beta}-%{_rc}.tar.gz
 # Source0-md5:	92a51b947ac4a8f36119f273592b415d
 URL:		http://fruity.sourceforge.net/
-BuildRequires:	rpmbuild(macros) >= 1.226
+BuildRequires:	rpmbuild(macros) >= 1.264
 BuildRequires:	sed >= 4.0
 Requires:	adodb
 Requires:	nagios >= 2.0-0.b4
