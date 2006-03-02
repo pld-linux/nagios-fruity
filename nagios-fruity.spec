@@ -1,15 +1,14 @@
+%define		_rc rc1
+%define		_rel 0.1
 Summary:	Nagios Configuration Tool
 Summary(pl):	Narzêdzie konfiguracyjne dla Nagiosa
 Name:		nagios-fruity
 Version:	1.0
-%define		_beta beta2
-%define		_rc pl1
-%define		_rel 1.1
-Release:	0.%{_beta}.%{_rc}.%{_rel}
+Release:	0.%{_rc}.%{_rel}
 License:	GPL v2
 Group:		Applications/WWW
-Source0:	http://dl.sourceforge.net/fruity/fruity-%{version}-%{_beta}-%{_rc}.tar.gz
-# Source0-md5:	92a51b947ac4a8f36119f273592b415d
+Source0:	http://dl.sourceforge.net/fruity/fruity-%{version}-%{_rc}.tar.gz
+# Source0-md5:	5571da4c337dab1a189b0fcaf795dfc9
 URL:		http://fruity.sourceforge.net/
 BuildRequires:	rpmbuild(macros) >= 1.264
 BuildRequires:	sed >= 4.0
@@ -28,19 +27,21 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_appdir		%{_datadir}/%{_webapp}
 
 %description
-A Nagios Configuration Tool.
+Fruity is an open-source web-based configuration tool for the Nagios network
+monitoring system. It is designed to provide a logical process of creating and
+managing your network. It is written in PHP and uses the AdoDB database
+abstraction library.
 
 %description
 Narzêdzie konfiguracyjne dla Nagiosa.
 
 %prep
-%setup -q -n fruity
+%setup -q -n fruity-%{version}-%{_rc}
 rm -rf CVS
-rm -rf config # no longer used
+rm -r config # no longer used
 
 # undos the source
-find '(' -name '*.php' -o -name '*.inc' ')' -print0 | xargs -0 sed -i -e 's,
-$,,'
+find '(' -name '*.php' -o -name '*.inc' ')' -print0 | xargs -0 sed -i -e 's,\r$,,'
 
 mv includes/config.inc{,.dist}
 
