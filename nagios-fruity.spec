@@ -1,5 +1,5 @@
 %define		_rc rc1
-%define		_rel 0.1
+%define		_rel 0.3
 Summary:	Nagios Configuration Tool
 Summary(pl):	Narzêdzie konfiguracyjne dla Nagiosa
 Name:		nagios-fruity
@@ -9,10 +9,11 @@ License:	GPL v2
 Group:		Applications/WWW
 Source0:	http://dl.sourceforge.net/fruity/fruity-%{version}-%{_rc}.tar.gz
 # Source0-md5:	5571da4c337dab1a189b0fcaf795dfc9
+Patch0:		%{name}-adodb.patch
 URL:		http://fruity.sourceforge.net/
 BuildRequires:	rpmbuild(macros) >= 1.264
 BuildRequires:	sed >= 4.0
-Requires:	adodb
+Requires:	adodb >= 4.67-1.17
 Requires:	nagios >= 2.0-0.b4
 Requires:	php >= 4:5.0.0
 Requires:	php-mysql
@@ -37,13 +38,14 @@ Narzêdzie konfiguracyjne dla Nagiosa.
 
 %prep
 %setup -q -n fruity-%{version}-%{_rc}
-rm -rf CVS
+mv includes/config.inc{,.dist}
 rm -r config # no longer used
+rm -rf includes/adodb # using system adodb
 
 # undos the source
 find '(' -name '*.php' -o -name '*.inc' ')' -print0 | xargs -0 sed -i -e 's,\r$,,'
 
-mv includes/config.inc{,.dist}
+%patch0 -p1
 
 cat <<EOF > apache.conf
 Alias /fruity %{_appdir}

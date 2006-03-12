@@ -1,0 +1,24 @@
+diff -ur fruity-1.0-rc1/coordexport.php fruity-1.0-rc1.adodb/coordexport.php
+--- fruity-1.0-rc1/coordexport.php	2006-03-12 19:16:55.000000000 +0200
++++ fruity-1.0-rc1.adodb/coordexport.php	2006-03-12 19:16:23.000000000 +0200
+@@ -22,7 +22,7 @@
+ // XML Export of hosts and their coordinates
+ 
+ include_once('config/config.php');
+-include_once('adodb/adodb.inc.php');
++include_once('/usr/share/php/adodb/adodb.inc.php');
+ include_once('output/output.php');
+ include_once('sitedb/sitedb-general.php');
+ 
+diff -ur fruity-1.0-rc1/includes/config.inc.dist fruity-1.0-rc1.adodb/includes/config.inc.dist
+--- fruity-1.0-rc1/includes/config.inc.dist	2006-03-12 19:16:56.000000000 +0200
++++ fruity-1.0-rc1.adodb/includes/config.inc.dist	2006-03-12 19:16:45.000000000 +0200
+@@ -59,7 +59,7 @@
+ 
+ // Do *not* modify any of the below
+ 
+-include_once(FRUITY_FS_ROOT . 'includes/adodb/adodb.inc.php');
++include_once('/usr/share/php/adodb/adodb.inc.php');
+ include_once(FRUITY_FS_ROOT . 'output/output.php');
+ include_once(FRUITY_FS_ROOT . 'includes/output.inc');
+ include_once(FRUITY_FS_ROOT . 'modules/modules.inc');
