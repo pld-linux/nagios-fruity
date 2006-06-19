@@ -12,6 +12,7 @@ Source0:	http://dl.sourceforge.net/fruity/fruity-%{version}-%{_rc}.tar.gz
 Source1:	patches.tar.bz2
 # Source1-md5:	e8d7825cdfdb2ffdbb5f54f38cd3b1d2
 Patch0:		%{name}-adodb.patch
+Patch1:		%{name}-config.patch
 URL:		http://fruity.sourceforge.net/
 BuildRequires:	rpmbuild(macros) >= 1.264
 BuildRequires:	sed >= 4.0
@@ -55,6 +56,7 @@ find patch -name '*.patch' | xargs sed -i -e 's,\r$,,'
 find patch -name '*.patch' | xargs cat | patch -p1
 
 %patch0 -p1
+%patch1 -p1
 
 cat <<EOF > apache.conf
 Alias /fruity %{_appdir}
