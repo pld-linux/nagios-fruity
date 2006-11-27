@@ -18,10 +18,10 @@ BuildRequires:	rpmbuild(macros) >= 1.264
 BuildRequires:	sed >= 4.0
 Requires:	adodb >= 4.67-1.17
 Requires:	nagios >= 2.0-0.b4
-Requires:	php >= 4:5.0.0
-Requires:	php-mysql
+Requires:	php(mysql)
 Requires:	php-pear-HTML_TreeMenu
 Requires:	webapps
+Requires:	webserver(php) >= 5.0.0
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
