@@ -36,7 +36,7 @@ network monitoring system. It is designed to provide a logical process
 of creating and managing your network. It is written in PHP and uses
 the AdoDB database abstraction library.
 
-%description
+%description -l pl
 Fruity to otwarte obs³ugiwane przez WWW narzêdzie konfiguracyjne dla
 systemu monitorowania sieci Nagios. Zosta³o zaprojektowane aby
 zapewniæ logiczny proces tworzenia i zarz±dzania sieci±. Jest napisane
