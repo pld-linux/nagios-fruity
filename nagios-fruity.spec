@@ -1,7 +1,7 @@
 %define		_rc rc1
 %define		_rel 0.4
 Summary:	Nagios Configuration Tool
-Summary(pl):	Narzêdzie konfiguracyjne dla Nagiosa
+Summary(pl.UTF-8):   NarzÄ™dzie konfiguracyjne dla Nagiosa
 Name:		nagios-fruity
 Version:	1.0
 Release:	0.%{_rc}.%{_rel}
@@ -36,11 +36,11 @@ network monitoring system. It is designed to provide a logical process
 of creating and managing your network. It is written in PHP and uses
 the AdoDB database abstraction library.
 
-%description -l pl
-Fruity to otwarte obs³ugiwane przez WWW narzêdzie konfiguracyjne dla
-systemu monitorowania sieci Nagios. Zosta³o zaprojektowane aby
-zapewniæ logiczny proces tworzenia i zarz±dzania sieci±. Jest napisane
-w PHP i wykorzystuje bibliotekê abstrakcji baz danych AdoDB.
+%description -l pl.UTF-8
+Fruity to otwarte obsÅ‚ugiwane przez WWW narzÄ™dzie konfiguracyjne dla
+systemu monitorowania sieci Nagios. ZostaÅ‚o zaprojektowane aby
+zapewniÄ‡ logiczny proces tworzenia i zarzÄ…dzania sieciÄ…. Jest napisane
+w PHP i wykorzystuje bibliotekÄ™ abstrakcji baz danych AdoDB.
 
 %prep
 %setup -q -n fruity-%{version}-%{_rc} -a1
