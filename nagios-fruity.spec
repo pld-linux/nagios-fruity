@@ -1,7 +1,7 @@
 %define		_rc rc1
 %define		_rel 0.4
 Summary:	Nagios Configuration Tool
-Summary(pl.UTF-8):   Narzędzie konfiguracyjne dla Nagiosa
+Summary(pl.UTF-8):	Narzędzie konfiguracyjne dla Nagiosa
 Name:		nagios-fruity
 Version:	1.0
 Release:	0.%{_rc}.%{_rel}
