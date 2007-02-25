@@ -10,14 +10,5 @@ diff -uNr fruity-1.0-rc1.orig/coordexport.php fruity-1.0-rc1/coordexport.php
  include_once('/usr/share/php/adodb/adodb.inc.php');
  include_once('output/output.php');
  include_once('sitedb/sitedb-general.php');
-diff -uNr fruity-1.0-rc1.orig/header.php fruity-1.0-rc1/header.php
---- fruity-1.0-rc1.orig/header.php	2006-03-01 22:05:15.000000000 +0100
-+++ fruity-1.0-rc1/header.php	2006-06-19 06:50:51.000000000 +0200
-@@ -22,7 +22,6 @@
- define( "LOAD_MODULE_SEARCH", 1);
- 
- include_once('includes/config.inc');
--include_once('config/config.php');
- include_once('output/output.php');
  
  
