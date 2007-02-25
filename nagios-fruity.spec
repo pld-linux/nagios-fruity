@@ -10,6 +10,7 @@ Group:		Applications/WWW
 Source0:	http://dl.sourceforge.net/fruity/fruity-%{version}-%{_rc}.tar.gz
 # Source0-md5:	2c4fd0ad1d58c47f37e8dd64f61bfdce
 Patch0:		%{name}-adodb.patch
+Patch1:		%{name}-config.patch
 URL:		http://fruity.sourceforge.net/
 BuildRequires:	rpmbuild(macros) >= 1.264
 BuildRequires:	sed >= 4.0
@@ -49,6 +50,7 @@ rm -rf includes/adodb # using system adodb
 find '(' -name '*.php' -o -name '*.inc' ')' -print0 | xargs -0 sed -i -e 's,\r$,,'
 
 %patch0 -p1
+%patch1 -p1
 
 cat <<EOF > apache.conf
 Alias /fruity %{_appdir}
