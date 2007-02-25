@@ -1,8 +1,7 @@
-#TODO
-# - add R aojo http://dojotoolkit.org/
+# TODO
+# - add R dojo http://dojotoolkit.org/
 # - upgrade.php
-# - patch for addodb
-
+# - patch for adodb
 %define		_rc rc2
 %define		_rel 0.2
 Summary:	Nagios Configuration Tool
