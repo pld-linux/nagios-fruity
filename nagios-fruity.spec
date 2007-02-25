@@ -1,3 +1,7 @@
+#TODO
+# - dojo
+# - upgrade.php
+
 %define		_rc rc2
 %define		_rel 0.1
 Summary:	Nagios Configuration Tool
