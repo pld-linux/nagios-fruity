@@ -1,5 +1,5 @@
 %define		_rc rc2
-%define		_rel 0.4
+%define		_rel 0.1
 Summary:	Nagios Configuration Tool
 Summary(pl.UTF-8):	Narzędzie konfiguracyjne dla Nagiosa
 Name:		nagios-fruity
