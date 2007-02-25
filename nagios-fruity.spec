@@ -1,9 +1,10 @@
 #TODO
-# - dojo
+# - add R aojo http://dojotoolkit.org/
 # - upgrade.php
+# - patch for addodb
 
 %define		_rc rc2
-%define		_rel 0.1
+%define		_rel 0.2
 Summary:	Nagios Configuration Tool
 Summary(pl.UTF-8):	Narzędzie konfiguracyjne dla Nagiosa
 Name:		nagios-fruity
@@ -22,6 +23,7 @@ Requires:	adodb >= 4.67-1.17
 Requires:	nagios >= 2.0-0.b4
 Requires:	php(mysql)
 Requires:	php-pear-HTML_TreeMenu
+Requires:	php-pear-DB_odbtp
 Requires:	webapps
 Requires:	webserver(php) >= 5.0.0
 BuildArch:	noarch
@@ -84,6 +86,7 @@ rm -f $RPM_BUILD_ROOT%{_appdir}/includes/config.inc.dist
 # config
 mv -f $RPM_BUILD_ROOT%{_appdir}/includes/config.inc $RPM_BUILD_ROOT%{_sysconfdir}/fruity.php
 ln -s %{_sysconfdir}/fruity.php $RPM_BUILD_ROOT%{_appdir}/includes/config.inc
+ln -s  /usr/share/php/adodb $RPM_BUILD_ROOT%{_appdir}/includes/adodb
 
 %clean
 rm -rf $RPM_BUILD_ROOT
