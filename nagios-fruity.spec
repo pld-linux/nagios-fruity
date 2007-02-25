@@ -1,4 +1,4 @@
-%define		_rc rc1
+%define		_rc rc2
 %define		_rel 0.4
 Summary:	Nagios Configuration Tool
 Summary(pl.UTF-8):	Narzędzie konfiguracyjne dla Nagiosa
@@ -8,11 +8,8 @@ Release:	0.%{_rc}.%{_rel}
 License:	GPL v2
 Group:		Applications/WWW
 Source0:	http://dl.sourceforge.net/fruity/fruity-%{version}-%{_rc}.tar.gz
-# Source0-md5:	5571da4c337dab1a189b0fcaf795dfc9
-Source1:	patches.tar.bz2
-# Source1-md5:	e8d7825cdfdb2ffdbb5f54f38cd3b1d2
+# Source0-md5:	2c4fd0ad1d58c47f37e8dd64f61bfdce
 Patch0:		%{name}-adodb.patch
-Patch1:		%{name}-config.patch
 URL:		http://fruity.sourceforge.net/
 BuildRequires:	rpmbuild(macros) >= 1.264
 BuildRequires:	sed >= 4.0
@@ -43,20 +40,15 @@ zapewnić logiczny proces tworzenia i zarządzania siecią. Jest napisane
 w PHP i wykorzystuje bibliotekę abstrakcji baz danych AdoDB.
 
 %prep
-%setup -q -n fruity-%{version}-%{_rc} -a1
+%setup -q -n fruity-%{version}-%{_rc}
 
 mv includes/config.inc{,.dist}
-rm -r config # no longer used
 rm -rf includes/adodb # using system adodb
 
 # undos the source
 find '(' -name '*.php' -o -name '*.inc' ')' -print0 | xargs -0 sed -i -e 's,\r$,,'
 
-find patch -name '*.patch' | xargs sed -i -e 's,\r$,,'
-find patch -name '*.patch' | xargs cat | patch -p1
-
 %patch0 -p1
-%patch1 -p1
 
 cat <<EOF > apache.conf
 Alias /fruity %{_appdir}
