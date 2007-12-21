@@ -2,6 +2,7 @@
 # - add R dojo http://dojotoolkit.org/
 # - upgrade.php
 # - patch for adodb
+# fork fruity to lilac - http://www.lilacplatform.net/
 %define		_rc rc2
 %define		_rel 0.2
 Summary:	Nagios Configuration Tool
