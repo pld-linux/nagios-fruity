@@ -1,8 +1,9 @@
 # TODO
 # - add R dojo http://dojotoolkit.org/
 # - upgrade.php
-# - patch for adodb
-# fork fruity to lilac - http://www.lilacplatform.net/
+# - proper webapps integration: make config not accessible from web
+# - proper patch for system adodb (i.e not symlink)
+# - fork fruity to lilac - http://www.lilacplatform.net/
 %define		_rc rc2
 %define		_rel 0.2
 Summary:	Nagios Configuration Tool
@@ -86,7 +87,7 @@ rm -f $RPM_BUILD_ROOT%{_appdir}/includes/config.inc.dist
 # config
 mv -f $RPM_BUILD_ROOT%{_appdir}/includes/config.inc $RPM_BUILD_ROOT%{_sysconfdir}/fruity.php
 ln -s %{_sysconfdir}/fruity.php $RPM_BUILD_ROOT%{_appdir}/includes/config.inc
-ln -s  /usr/share/php/adodb $RPM_BUILD_ROOT%{_appdir}/includes/adodb
+ln -s %{php_data_dir}/adodb $RPM_BUILD_ROOT%{_appdir}/includes/adodb
 
 %clean
 rm -rf $RPM_BUILD_ROOT
